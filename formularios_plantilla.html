@@ -154,12 +154,14 @@ input[type="radio"] {
         <label for="apellido">Apellido</label>
         <input id="apellido" name="apellido" type="text">
 
-        <label for="pass1">Contraseña</label>
-        <input id="pass1" name="pass1" type="password" required pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,6}$" placeholder="6 CARACTERES INCLUÍDA 1 MAY, 1 MIN Y 1 NÚM">
+        <label for="pass">Contraseña</label>
+        <input id="pass" name="pass" type="password" required pattern="^(?=.*[a-z])(?=.*[A-Z]).{6,6}$" placeholder="6 CARACTERES INCLUÍDA 1 MAY, 1 MIN Y 1 NÚM">
         <span></span>
 
-        <label for="pass2">Repetir contraseña</label>
-        <input id="pass2" name="pass2" type="password">
+        <label for="pass_repeat">Repetir contraseña</label>
+        <input id="pass_repeat" name="pass_repeat" type="password" required>
+        <span></span>
+        <div id='passwordC-error' class='error'></div>
         
         <fieldset>
             <legend>Elige una opción</legend>
@@ -188,8 +190,6 @@ input[type="radio"] {
           <fieldset class="radios_horizontales">
             <legend>Valora de menos (1) a más (5)</legend>
           
-
-
               <label>
                 <input type="radio" name="valora" value="1">
                 1
@@ -221,6 +221,20 @@ input[type="radio"] {
           <button>Enviar</button>
 
     </form>
+    <script>
+    const pw = document.querySelector('#pass');
+    const pwC = document.querySelector('#pass_repeat');
+    const pwCError = document.querySelector('#passwordC-error');
+    pwC.addEventListener("input", function (event) {
+      if (pwC.value !== pw.value) {
+        pwC.setCustomValidity("Las contraseñas no coinciden");
+      } else {
+        pwC.setCustomValidity("");
+      }
+      pwC.reportValidity();
+    }); 
+
+    </script>
 </body>
 </html>
 	
